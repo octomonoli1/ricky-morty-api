@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CharactersService } from '../../services/characters.service';
+import { Character } from '@app/model/character';
+import { ActivatedRoute, ParamMap, Route, RouterModule } from '@angular/router';
+import { Router } from 'express';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-content',
@@ -8,26 +12,31 @@ import { CharactersService } from '../../services/characters.service';
 })
 export class ContentComponent implements OnInit{
 
-  characters: any;
-  nextPage: any;
-  prevPage: any;
+  public characters: Character[] = [];
+  private numPag: number = 1;
+  private query: any;
 
-  constructor(private characterService: CharactersService){}
+
+  constructor(private characterService: CharactersService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.characterService.getData("").subscribe(data => {
-      this.characters = data.results;
-      this.nextPage = data.next;
-      this.prevPage = data.prev;
+    this.getCharacterFromQuery();
+  }
+
+  getCharacterFromService(): void {
+    this.characterService.getList(this.query, this.numPag).subscribe((data:any) => {
+      let {info, results} = data;
+      this.characters = (results);
+      console.log(this.characters);
     });
   }
 
-  next(page: string): void {
-    this.nextPage = page;
-  }
-
-  prev(page: string): void{
-    this.prevPage = page;
+  getCharacterFromQuery(): void {
+    this.route.queryParams.subscribe(data => {
+      console.log("Params -> " + data['q']);
+      this.query = data['q'];
+      this.getCharacterFromService();
+    });
   }
 
 }
