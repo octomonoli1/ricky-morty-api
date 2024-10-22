@@ -1,0 +1,24 @@
+<div class="container">
+    <h1 class="title">Bienvenidos a la web de Ricky Morty</h1>
+    <div class="row">
+        @for (item of characters; track item.id) {
+            <div class="col-sm-12 col-md-3">
+                <div class="character card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.name}}</h5>
+                    </div> 
+                    <div class="d-flex justify-content-center mt-3">
+                        <img src="{{item.image}}" class="img-character img-fluid">
+                      </div>
+                </div>
+            </div>
+        }
+
+        <nav aria-label="pagination">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" (click)="prev(characters.prev)">Anterior</a></li>
+                <li class="page-item"><a class="page-link" (click)="next(characters.next)">Siguiente</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
