@@ -19,7 +19,7 @@ export class CharactersService {
   }
 
   getCharacter(id: number){
-    return this.http.get<Character>(this.apiUrl + "/character" + id);
+    return this.http.get<Character>(this.apiUrl + "/" + id);
   }
 
   handledError(){
