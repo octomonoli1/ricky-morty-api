@@ -5,20 +5,21 @@
             <div class="col-sm-12 col-md-3">
                 <p>No se encontraron resultados...</p>
             </div>
-        }
-        @for (item of characters; track item.id) {
-            <div class="col-sm-12 col-md-3">
-                <div class="character card">
-                    <a style="text-decoration: none;" [routerLink]="['/character', item.id]">
-                    <div class="card-body">
-                        <h5 class="card-title">{{item.name}}</h5>
-                    </div> 
-                    <div class="d-flex justify-content-center mt-3">
-                    <img src="{{item.image}}" class="img-character img-fluid" [alt]="item.name">
+        }@else{
+            @for (item of characters; track item.id) {
+                <div class="col-sm-12 col-md-3">
+                    <div class="character card">
+                        <a style="text-decoration: none;" [routerLink]="['/character', item.id]">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                        </div> 
+                        <div class="d-flex justify-content-center mt-3">
+                        <img src="{{item.image}}" class="img-character img-fluid" [alt]="item.name">
+                        </div>
+                    </a>
                     </div>
-                </a>
                 </div>
-            </div>
+            }
         }
 
         <nav aria-label="pagination">

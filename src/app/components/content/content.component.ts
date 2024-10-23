@@ -24,11 +24,18 @@ export class ContentComponent implements OnInit{
   }
 
   getCharacterFromService(): void {
-    this.characterService.getList(this.query, this.numPag).subscribe((data:any) => {
-      let {info, results} = data;
-      this.characters = (results);
-      console.log(this.characters);
-    });
+    this.characterService.getList(this.query, this.numPag).subscribe(
+      (data:any) => {
+        let {info, results} = data;
+        this.characters = (results);
+        console.log(this.characters);
+      },
+      (error) => {
+        this.characters = [];
+        console.log("Sin resultados");
+      }
+  
+  );
   }
 
   getCharacterFromQuery(): void {
