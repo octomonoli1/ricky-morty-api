@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormSearchComponent } from './components/form-search/form-search.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,11 @@ import { DetailComponent } from './components/detail/detail.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    RouterModule
+  ],
+  exports:[
+    RouterModule,
   ],
   providers: [
     provideClientHydration()
